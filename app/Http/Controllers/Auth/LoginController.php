@@ -39,6 +39,11 @@ class LoginController extends Controller
             'password'=>'Password salah'
             ])->onlyInput('email');//untuk mempertahankan input email yang telah diisi
         }
-
+    }
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }
